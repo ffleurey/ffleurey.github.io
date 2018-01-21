@@ -18,8 +18,8 @@ var phrases = [
   'slå av lyset',
   'skru på kaffemaskinen',
   'skru av kaffemaskinen',
-  'det er lit kald',
-  'det er lit varm',
+  'det er litt kaldt',
+  'det er for varmt',
   'planten trenger vann'
 ]
 
@@ -36,8 +36,8 @@ var responses = [
 
 var mqtttopics = [
   'speech',
-  'st/BL1/switch',
-  'st/BL1/switch',
+  'st/BL1/switch|st/BL2/switch|st/BL3/switch',
+  'st/BL1/switch|st/BL2/switch|st/BL3/switch',
   'st/PL1/switch',
   'st/PL1/switch',
   'st/PL2/switch',
@@ -172,7 +172,11 @@ function testSpeech() {
         resultPara.textContent = responses[i];
         resultPara.style.background = 'lime';
         understood = true;
-        mqtt_publish("ws://192.168.8.5:9001", mqtttopics[i], payloads[i]);
+
+        var topics = mqtttopics[i].split('|');
+        for (var t = 0; t<topics.length; t++) {
+            mqtt_publish("ws://192.168.8.5:9001", topics[t], payloads[i]);
+        }
         break;
       }
     }
