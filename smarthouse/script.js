@@ -163,7 +163,7 @@ function testSpeech() {
     var speechResult = event.results[0][0].transcript;
     diagnosticPara.textContent = 'Heard: ' + speechResult + ' (confidence = ' + event.results[0][0].confidence + ').';
 
-    mqtt_publish("ws://192.168.8.5:9001", "speech", speechResult);
+    
 
     var understood = false;
 
@@ -172,12 +172,14 @@ function testSpeech() {
         resultPara.textContent = responses[i];
         resultPara.style.background = 'lime';
         understood = true;
+        mqtt_publish("ws://192.168.8.5:9001", mqtttopics[i], payloads[i]);
         break;
       }
     }
     if (understood == false) {
       resultPara.textContent = 'Jeg skjønte ikke det! Prøv en gang til.';
       resultPara.style.background = 'red';
+      mqtt_publish("ws://192.168.8.5:9001", "speech", speechResult);
     }
     tts(resultPara.textContent);
   //  console.log('Confidence: ' + event.results[0][0].confidence);
@@ -186,12 +188,12 @@ function testSpeech() {
   recognition.onspeechend = function() {
     recognition.stop();
     testBtn.disabled = false;
-    testBtn.textContent = 'Prøv en gang til';
+    testBtn.textContent = 'Listen';
   }
 
   recognition.onerror = function(event) {
     testBtn.disabled = false;
-    testBtn.textContent = 'Prøv en gang til';
+    testBtn.textContent = 'Listen';
     diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
   }
 
