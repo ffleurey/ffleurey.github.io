@@ -14,7 +14,7 @@ function send_mqtt_commands(broker, commands_to_send) {
         var tp = cmds[i].split("#");
         mqc.publish(tp[0], tp[1]);
     }
-    mqc.close();
+    mqc.end();
 }
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
