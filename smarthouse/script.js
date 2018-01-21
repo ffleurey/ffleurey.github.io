@@ -3,7 +3,7 @@ function mqtt_publish(broker, topic, payload) {
     var mqc = null;
     mqc  = mqtt.connect(broker);
     mqc.publish(topic, payload);
-    mqc.close();
+    mqc.end();
 }
 
 function send_mqtt_commands(broker, commands_to_send) {
