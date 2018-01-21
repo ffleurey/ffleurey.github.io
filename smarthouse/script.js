@@ -6,7 +6,16 @@ function mqtt_publish(broker, topic, payload) {
     mqc.close();
 }
 
-
+function send_mqtt_commands(broker, commands_to_send) {
+    var mqc = null;
+    mqc  = mqtt.connect(broker);
+    var cmds = commands_to_send.split("|");
+    for (var i=0; i<cmds.length; i++) {
+        var tp = cmds[i].split("#");
+        mqc.publish(tp[0], tp[1]);
+    }
+    mqc.close();
+}
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
@@ -32,6 +41,17 @@ var responses = [
   'OK',
   'OK',
   'OK'
+]
+
+var commands = [
+  'speech#Hello',
+  'st/BL1/switch#on|st/BL2/switch#on|st/BL3/switch#on',
+  'st/BL1/switch#off|st/BL2/switch#off|st/BL3/switch#off',
+  'st/PL1/switch#on',
+  'st/PL1/switch#off',
+  'st/PL2/switch#on',
+  'st/PL2/switch#off',
+  'smartplant/pumpwater#5'
 ]
 
 var mqtttopics = [
@@ -173,11 +193,9 @@ function testSpeech() {
         resultPara.style.background = 'lime';
         understood = true;
 
-        var topics = mqtttopics[i].split('|');
+        send_mqtt_commands("ws://192.168.8.5:9001", commands[i]);
 
-        for (var t = 0; t<topics.length; t++) {
-            mqtt_publish("ws://192.168.8.5:9001", topics[t], payloads[i]);
-        }
+      
         break;
       }
     }
