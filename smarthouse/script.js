@@ -45,7 +45,7 @@ var responses = [
 
 var commands = [
   'speech#Hello',
-  'st/BL1/switch#on|st/BL2/switch#on2|st/BL3/switch#on3',
+  'st/BL1/switch#on|st/BL2/switch#on|st/BL3/switch#on',
   'st/BL1/switch#off|st/BL2/switch#off|st/BL3/switch#off',
   'st/PL1/switch#on',
   'st/PL1/switch#off',
