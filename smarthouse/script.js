@@ -174,6 +174,7 @@ function testSpeech() {
         understood = true;
 
         var topics = mqtttopics[i].split('|');
+
         for (var t = 0; t<topics.length; t++) {
             mqtt_publish("ws://192.168.8.5:9001", topics[t], payloads[i]);
         }
