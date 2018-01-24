@@ -193,7 +193,7 @@ function testSpeech() {
         resultPara.style.background = 'lime';
         understood = true;
 
-        send_mqtt_commands("ws://192.168.8.5:9001", commands[i]);
+        send_mqtt_commands("wss://192.168.8.5:8889", commands[i]);
 
       
         break;
@@ -202,7 +202,7 @@ function testSpeech() {
     if (understood == false) {
       resultPara.textContent = 'Jeg skjønte ikke det! Prøv en gang til.';
       resultPara.style.background = 'red';
-      mqtt_publish("ws://192.168.8.5:9001", "speech", speechResult);
+      mqtt_publish("wss://192.168.8.5:8889", "speech", speechResult);
     }
     tts(resultPara.textContent);
   //  console.log('Confidence: ' + event.results[0][0].confidence);
