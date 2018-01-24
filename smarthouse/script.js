@@ -22,38 +22,45 @@ var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
 var phrases = [
-  'god dag',
+  'Hvor er vesken min',
+  'Hvor er brillene mine',
   'slå på lyset',
   'slå av lyset',
-  'skru på kaffemaskinen',
+  'Setter du på kaffen',
   'skru av kaffemaskinen',
-  'det er litt kaldt',
-  'det er for varmt',
+  'Det er kaldt her',
+  'Det er varmt her',
+  'Kan du åpne opp døra',
   'planten trenger vann'
 ]
 
 var responses = [
-  'Hei på deg!',
-  'OK, la det bli lys!',
-  'OK, jeg slår av lysene, god natt! ',
-  'OK',
-  'OK',
-  'OK',
-  'OK',
-  'OK'
+  'Vesken din ligger i gangen',
+  'Brillene dine er på kjøkkenet',
+  'OK, la det bli lys',
+  'OK, jeg slår av lysene',
+  '',
+  '',
+  '',
+  '',
+  '',
+  ''
 ]
 
 var commands = [
-  'speech#Hello',
+  'log#SearchBag',
+  'log#SearchGlasses',
   'st/BL1/switch#on|st/BL2/switch#on|st/BL3/switch#on',
   'st/BL1/switch#off|st/BL2/switch#off|st/BL3/switch#off',
   'st/PL1/switch#on',
   'st/PL1/switch#off',
   'st/PL2/switch#on',
   'st/PL2/switch#off',
+  'log#OpenDoor',
   'smartplant/pumpwater#5'
 ]
 
+/*
 var mqtttopics = [
   'speech',
   'st/BL1/switch|st/BL2/switch|st/BL3/switch',
@@ -75,6 +82,7 @@ var payloads = [
   'off',
   '5'
 ]
+*/
 
 var resultPara = document.querySelector('.result');
 var diagnosticPara = document.querySelector('.output');
@@ -132,8 +140,8 @@ for (var i = 0; i < voices.length; i++) {
 //msg.voice = voices[1]; // Note: some voices don't support altering params
 //msg.voiceURI = 'native';
 //msg.volume = 1; // 0 to 1
-msg.rate = 0.7; // 0.1 to 10
-msg.pitch = 0.8; //0 to 2
+msg.rate = 1; // 0.1 to 10
+msg.pitch = 1; //0 to 2
 msg.text = text;
 msg.lang = 'nb-NO';
 speechSynthesis.speak(msg);
