@@ -14,17 +14,17 @@
 
   <body>
    
-   	<textarea id="Text1">
+   	<textarea id="Text1" rows="4" cols="60">
 		Vesken din ligger i gangen.
 	</textarea>
 	<button type="button" onclick="mqtt_publish('speech/tts', document.getElementById('Text1').value)">Text 1</button>
 
-	<textarea id="Text2">
+	<textarea id="Text2" rows="4" cols="60">
 		Du har besøk. Skal jeg åpne ytterdøra? 
 	</textarea>
 	<button type="button" onclick="mqtt_publish('speech/tts', document.getElementById('Text2').value)">Text 2</button>
 
-	<textarea id="Text3">
+	<textarea id="Text3" rows="4" cols="60">
 		Vesken din ligger i gangen. Kaffen er klar og maten er her om to minutter.
 	</textarea>
 	<button type="button" onclick="mqtt_publish('speech/tts', document.getElementById('Text3').value)">Text 3</button>
