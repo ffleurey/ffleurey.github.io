@@ -25,16 +25,16 @@ function mqtt_subscribe() {
 }
 
 
-function mqtt_publish(broker, topic, payload) {
+function mqtt_publish(topic, payload) {
     var mqc = null;
-    mqc  = mqtt.connect(broker);
+    mqc  = mqtt.connect(mqtt_url);
     mqc.publish(topic, payload);
     mqc.end();
 }
 
-function send_mqtt_commands(broker, commands_to_send) {
+function send_mqtt_commands(commands_to_send) {
     var mqc = null;
-    mqc  = mqtt.connect(broker);
+    mqc  = mqtt.connect(mqtt_url);
     var cmds = commands_to_send.split("|");
     for (var i=0; i<cmds.length; i++) {
         var tp = cmds[i].split("#");
