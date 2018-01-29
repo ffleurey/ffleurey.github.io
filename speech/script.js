@@ -256,3 +256,4 @@ function testSpeech() {
 }
 
 testBtn.addEventListener('click', testSpeech);
+mqtt_subscribe();
