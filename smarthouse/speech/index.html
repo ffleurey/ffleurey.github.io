@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
 
-    <title>Ingrid's Smarthouse Voice Test</title>
+    <title>Ingrid's Smarthouse TTS</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="lib/mqtt.min.js"></script>
@@ -13,12 +13,17 @@
   </head>
 
   <body>
-    <p>Press the button to make the house listen to you.</p>
+   
+   	<textarea id="Text1" rows="4" cols="50">
+		Vesken din ligger i gangen.
+	</textarea>
+	<button type="button" onclick="mqtt_publish('speech/tts', document.getElementById("Text1").value)">Text 1</button>
 
-    <button>Listen!</button>
+	<textarea id="Text2" rows="4" cols="50">
+		Du har besøk. Skal jeg åpne ytterdøra? 
+	</textarea>
+	<button type="button" onclick="mqtt_publish('speech/tts', document.getElementById("Text2").value)">Text 2</button>
 
-    <p class=pbold>Test commands are:</p>
-    <p class=cmds></p>
 
     <div>
       
