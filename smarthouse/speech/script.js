@@ -1,12 +1,13 @@
 var mqtt_url = "wss://192.168.8.5:8889";
+var mqsub = null;
 
 function mqtt_subscribe() {
-    var mqc = null;
-    mqc  = mqtt.connect(mqtt_url)
     
-    mqc.subscribe(Tryggi3D.config("speech/tts"));
+    mqsub  = mqtt.connect(mqtt_url)
     
-    mqc.on("message", function (topic, payload) {
+    mqsub.subscribe("speech/tts");
+    
+    mqsub.on("message", function (topic, payload) {
         try {
             console.log("mqtt", topic, payload);
             if (topic === "speech/tts") {
