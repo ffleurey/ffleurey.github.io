@@ -26,10 +26,11 @@ function mqtt_subscribe() {
 
 
 function mqtt_publish(topic, payload) {
-    var mqc = null;
-    mqc  = mqtt.connect(mqtt_url);
-    mqc.publish(topic, payload);
-    mqc.end();
+    //var mqc = null;
+    //mqc  = mqtt.connect(mqtt_url);
+    //mqc.publish(topic, payload);
+    //mqc.end();
+    mqsub.publish(topic, payload);
 }
 
 function send_mqtt_commands(commands_to_send) {
